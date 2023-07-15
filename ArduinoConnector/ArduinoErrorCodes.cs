@@ -8,6 +8,9 @@ namespace ArduinoConnector
 {
     public enum ArduinoErrorCode
     {
-        INVALID_PIN = 1
+        INVALID_TEST_PIN = 1,
+        INVALID_IO_PIN = 2,
+        INVALID_COMMAND = 3,
+        INVALID_COMMAND_SYNTAX = 4,
     }
 }
