@@ -3,6 +3,7 @@
     public class ArduinoConnector : IArduinoConnector
     {
         public event EventHandler<TestPinConnectionsMessageEventArgs> TestPinConnectionsMessage;
+        public event EventHandler<TestPinConnectionsMessageEventArgs> DeviceTypeMessage;
         public event EventHandler<ErrorMessageEventArgs> ErrorMessage;
 
         IArduinoConnection _connection;
@@ -22,6 +23,9 @@
 
             switch (command)
             {
+                case "DeviceType":
+                    OnDeviceTypeMessage(commandArguments.ToArray());
+                    break;
                 case "TestPinConnectionsResults":
                     OnTestPinConnectionsMessage(commandArguments.ToArray());
                     break;
@@ -29,6 +33,11 @@
                     OnErrorMessage(commandArguments.ToArray());
                     break;
             }
+        }
+
+        private void OnDeviceTypeMessage(string[] arguments)
+        {
+
         }
 
         private void OnErrorMessage(string[] arguments)
@@ -61,6 +70,11 @@
         }
 
         public void SetPinOutput(int pin, bool state)
+        {
+
+        }
+
+        public void GetDeviceType()
         {
 
         }

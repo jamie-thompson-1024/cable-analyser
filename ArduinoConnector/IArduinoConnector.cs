@@ -9,8 +9,10 @@ namespace ArduinoConnector
     public interface IArduinoConnector
     {
         event EventHandler<TestPinConnectionsMessageEventArgs> TestPinConnectionsMessage;
+        event EventHandler<TestPinConnectionsMessageEventArgs> DeviceTypeMessage;
         event EventHandler<ErrorMessageEventArgs> ErrorMessage;
 
+        void GetDeviceType();
         void TestPinConnections(int pin, int[] testPins);
         void SetPinOutput(int pin, bool state);
     }
