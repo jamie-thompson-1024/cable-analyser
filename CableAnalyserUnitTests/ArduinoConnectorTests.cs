@@ -4,7 +4,7 @@ using System;
 namespace CableAnalyserUnitTests
 {
     [TestClass]
-    public class ArduinoConnector
+    public class ArduinoConnectorTests
     {
         [TestMethod]
         public void TestMethod1()
