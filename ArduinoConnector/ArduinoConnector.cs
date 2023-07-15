@@ -1,6 +1,6 @@
 ﻿namespace ArduinoConnector
 {
-    public class ArduinoConnector
+    public class ArduinoConnector : IArduinoConnector
     {
         public event EventHandler<TestPinConnectionsMessageEventArgs> TestPinConnectionsMessage;
         public event EventHandler<ErrorMessageEventArgs> ErrorMessage;
