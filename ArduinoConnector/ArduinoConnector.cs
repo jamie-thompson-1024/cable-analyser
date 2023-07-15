@@ -1,5 +1,6 @@
 ﻿namespace ArduinoConnector
 {
+    // test change
     public class ArduinoConnector
     {
         public event EventHandler<TestPinConnectionsMessageEventArgs> TestPinConnectionsMessage;
