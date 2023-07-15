@@ -12,5 +12,6 @@ namespace ArduinoConnector
         event EventHandler<ErrorMessageEventArgs> ErrorMessage;
 
         void TestPinConnections(int pin, int[] testPins);
+        void SetPinOutput(int pin, bool state);
     }
 }
