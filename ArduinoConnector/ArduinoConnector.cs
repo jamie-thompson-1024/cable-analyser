@@ -22,7 +22,7 @@
 
             switch (command)
             {
-                case "TestPinConnections":
+                case "TestPinConnectionsResults":
                     OnTestPinConnectionsMessage(commandArguments.ToArray());
                     break;
                 case "Error":
@@ -39,10 +39,15 @@
         private void OnTestPinConnectionsMessage(string[] arguments)
         {
             int pin = int.Parse(arguments[0]);
-            int[] testedPins = Array.ConvertAll<string,int>(
-                arguments[1].Split(','),
-                new Converter<string, int>(x => int.Parse(x))
-            );
+            int[] testedPins = {};
+
+            if (!arguments[1].Equals("N/C"))
+            {
+                testedPins = Array.ConvertAll<string, int>(
+                    arguments[1].Split(','),
+                    new Converter<string, int>(x => int.Parse(x))
+                );
+            }
 
             TestPinConnectionsMessage(
                 this,
@@ -51,6 +56,11 @@
         }
 
         public void TestPinConnections(int pin, int[] testPins)
+        {
+            _connection.SendMessage("TestPinConnections " + pin + " " + String.Join(",", testPins));
+        }
+
+        public void SetPinOutput(int pin, bool state)
         {
 
         }
