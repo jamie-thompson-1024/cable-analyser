@@ -65,7 +65,7 @@ void loop() {
     String command = popFirstArgument(&serialMessage, ' ');
 
     if(command.equals("GetDeviceType")) {
-      Serial.println("CableAnalyser");
+      Serial.println("DeviceType CableAnalyser");
       break;
     }
     
