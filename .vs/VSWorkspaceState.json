@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ArduinoConnector",
+    "\\CableAnalyser",
+    "\\CableAnalyserGUI"
+  ],
+  "SelectedNode": "\\CableAnalyserGUI\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}
