@@ -5,9 +5,9 @@
         public event EventHandler<TestPinConnectionsMessageEventArgs> TestPinConnectionsMessage;
         public event EventHandler<ErrorMessageEventArgs> ErrorMessage;
 
-        ArduinoSerialConnection _connection;
+        IArduinoConnection _connection;
 
-        public ArduinoConnector(ArduinoSerialConnection connection)
+        public ArduinoConnector(IArduinoConnection connection)
         {
             _connection = connection;
             _connection.MessageReceived += MessageReceivedHandler;
