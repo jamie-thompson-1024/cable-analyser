@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArduinoConnector
 {
-    public class ArduinoSerialEmulator : IArduinoConnection
+    public class ArduinoEmulator : IArduinoConnection
     {
         public List<(string, string)> MessageHistory => throw new NotImplementedException();
 
