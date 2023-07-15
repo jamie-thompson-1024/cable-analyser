@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArduinoConnector
 {
-    internal interface IArduinoConnector
+    public interface IArduinoConnector
     {
+        event EventHandler<TestPinConnectionsMessageEventArgs> TestPinConnectionsMessage;
+        event EventHandler<ErrorMessageEventArgs> ErrorMessage;
+
+        void TestPinConnections(int pin, int[] testPins);
     }
 }
