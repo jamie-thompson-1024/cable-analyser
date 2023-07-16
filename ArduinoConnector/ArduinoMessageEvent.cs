@@ -14,7 +14,7 @@ namespace ArduinoConnector
             Message = message;
         }
 
-        public string Message { get; set; }
+        public string Message { get; }
     }
     public class ArduinoMessageSentEventArgs : EventArgs
     {
@@ -23,7 +23,7 @@ namespace ArduinoConnector
             Message = message;
         }
 
-        public string Message { get; set; }
+        public string Message { get; }
     }
     public class TestPinConnectionsMessageEventArgs : EventArgs
     {
@@ -33,8 +33,8 @@ namespace ArduinoConnector
             TestedPins = testedPins;
         }
 
-        public int Pin { get; set; }
-        public int[] TestedPins { get; set; }
+        public int Pin { get; }
+        public int[] TestedPins { get; }
     }
     public class ErrorMessageEventArgs : EventArgs
     {
@@ -43,7 +43,7 @@ namespace ArduinoConnector
             ErrorCode = errorCode;
         }
 
-        public ArduinoErrorCode ErrorCode { get; set; }
+        public ArduinoErrorCode ErrorCode { get; }
     }
     public class DeviceTypeMessageEventArgs : EventArgs
     {
@@ -52,6 +52,6 @@ namespace ArduinoConnector
             DeviceType = deviceType;
         }
 
-        public string DeviceType { get; set; }
+        public string DeviceType { get; }
     }
 }
