@@ -8,5 +8,6 @@ namespace CableAnalyser
 {
     internal class Cable
     {
+        // Add Cable Comparison Opperators
     }
 }
