@@ -3,7 +3,7 @@
     public class ArduinoConnector : IArduinoConnector
     {
         public event EventHandler<TestPinConnectionsMessageEventArgs> TestPinConnectionsMessage;
-        public event EventHandler<TestPinConnectionsMessageEventArgs> DeviceTypeMessage;
+        public event EventHandler<DeviceTypeMessageEventArgs> DeviceTypeMessage;
         public event EventHandler<ErrorMessageEventArgs> ErrorMessage;
 
         IArduinoConnection _connection;
@@ -37,7 +37,8 @@
 
         private void OnDeviceTypeMessage(string[] arguments)
         {
-
+            string deviceType = arguments[0];
+            DeviceTypeMessage(this, new DeviceTypeMessageEventArgs(deviceType));
         }
 
         private void OnErrorMessage(string[] arguments)

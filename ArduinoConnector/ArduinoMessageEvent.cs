@@ -45,4 +45,13 @@ namespace ArduinoConnector
 
         public ArduinoErrorCode ErrorCode { get; set; }
     }
+    public class DeviceTypeMessageEventArgs : EventArgs
+    {
+        public DeviceTypeMessageEventArgs(string deviceType)
+        {
+            DeviceType = deviceType;
+        }
+
+        public string DeviceType { get; set; }
+    }
 }
