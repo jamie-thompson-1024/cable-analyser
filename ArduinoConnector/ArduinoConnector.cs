@@ -66,17 +66,17 @@
 
         public void TestPinConnections(int pin, int[] testPins)
         {
-            _connection.SendMessage("TestPinConnections " + pin + " " + String.Join(",", testPins));
+            _connection.SendMessage($"TestPinConnections {pin} {String.Join(",", testPins)}");
         }
 
         public void SetPinOutput(int pin, bool state)
         {
-
+            _connection.SendMessage($"SetPinOutput {pin} {(state ? "1" : "0")}");
         }
 
         public void GetDeviceType()
         {
-
+            _connection.SendMessage("GetDeviceType");
         }
     }
 }
