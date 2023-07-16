@@ -42,7 +42,8 @@
 
         private void OnErrorMessage(string[] arguments)
         {
-
+            ArduinoErrorCode errorCode = (ArduinoErrorCode)int.Parse(arguments[0]);
+            ErrorMessage(this, new ErrorMessageEventArgs(errorCode));
         }
 
         private void OnTestPinConnectionsMessage(string[] arguments)
