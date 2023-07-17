@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArduinoConnector
 {
@@ -13,7 +10,7 @@ namespace ArduinoConnector
         public event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
 
         SerialPort _serialPort;
-        List<(string,string)> _messageHistory;
+        List<(MessageDirection, string)> _messageHistory;
 
         public ArduinoSerialConnection(string portName, int baudRate)
         {
@@ -21,12 +18,12 @@ namespace ArduinoConnector
             _serialPort.DataReceived += ReceivedMessageHandler;
         }
 
-        public List<(string,string)> MessageHistory
+        public List<(MessageDirection, string)> MessageHistory
         {
             get
             {
                 return _messageHistory.ConvertAll(
-                    new Converter<(string, string), (string, string)>(x => x)
+                    new Converter<(MessageDirection, string), (MessageDirection, string)>(x => x)
                 );
             }
         }
@@ -36,7 +33,7 @@ namespace ArduinoConnector
         public void SendMessage(string message)
         {
             _serialPort.WriteLine(message);
-            _messageHistory.Add(("Sent", message));
+            _messageHistory.Add((MessageDirection.SEND, message));
             MessageSent(
                 this, 
                 new ArduinoMessageSentEventArgs(message)
@@ -46,7 +43,7 @@ namespace ArduinoConnector
         {
             SerialPort port = (SerialPort)sender;
             string message = port.ReadLine();
-            _messageHistory.Add(("Received", message));
+            _messageHistory.Add((MessageDirection.RECEIVE, message));
             MessageReceived(
                 this,
                 new ArduinoMessageReceivedEventArgs(message)
