@@ -1,4 +1,8 @@
-﻿namespace ArduinoConnector
+﻿
+using System;
+using System.Threading;
+
+namespace ArduinoConnector
 {
     public class ArduinoConnector : IArduinoConnector
     {
@@ -16,6 +20,7 @@
         {
             _connection = connection;
             _connection.MessageReceived += MessageReceivedHandler;
+            _autoResetEvent = new AutoResetEvent(false);
         }
 
         private void MessageReceivedHandler(object sender, ArduinoMessageReceivedEventArgs e)
@@ -143,13 +148,14 @@
                 throw new Exception($"Error {_responseArgs[1]}");
             }
 
-            if (!_responseArgs[0].Equals("TestPinConnectionsResults"))
+            if (!_responseArgs[0].Equals("DeviceType"))
             {
                 throw new Exception($"Unexpected Response, Expected 'DeviceType' Got '{_responseArgs[0]}'");
             }
 
             string deviceType = _responseArgs[1];
             _responseArgs = null;
+
             return deviceType;
         }
 
