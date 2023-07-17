@@ -33,10 +33,10 @@ String popFirstArgument(String* inputString, char delimiter);
 
 
 // Error codes
-#define INVALID_TEST_PIN 1
-#define INVALID_IO_PIN 2
-#define INVALID_COMMAND 3
-#define INVALID_COMMAND_SYNTAX 4
+#define INVALID_TEST_PIN "INVALID_TEST_PIN"
+#define INVALID_IO_PIN "INVALID_IO_PIN"
+#define INVALID_COMMAND "INVALID_COMMAND"
+#define INVALID_COMMAND_SYNTAX "INVALID_COMMAND_SYNTAX"
 
 // Constants
 #define BAUD_RATE 9600
@@ -66,7 +66,6 @@ void loop() {
 
     if(command.equals("GetDeviceType")) {
       Serial.println("DeviceType CableAnalyser");
-      break;
     }
     
     if(command.equals("SetPinOutput")) {
@@ -80,7 +79,6 @@ void loop() {
       if(errorCode != 0) {
         sendErrorCode(errorCode);
       }
-      break;
     }
 
     if(command.equals("TestPinConnections")) {
@@ -102,7 +100,6 @@ void loop() {
       }
 
       resetTestPins();
-      break;
     }
 
     sendErrorCode(INVALID_COMMAND);
