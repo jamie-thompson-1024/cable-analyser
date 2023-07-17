@@ -38,12 +38,12 @@ namespace ArduinoConnector
     }
     public class ErrorMessageEventArgs : EventArgs
     {
-        public ErrorMessageEventArgs(ArduinoErrorCode errorCode)
+        public ErrorMessageEventArgs(string errorMessage)
         {
-            ErrorCode = errorCode;
+            ErrorMessage = errorMessage;
         }
 
-        public ArduinoErrorCode ErrorCode { get; }
+        public string ErrorMessage { get; }
     }
     public class DeviceTypeMessageEventArgs : EventArgs
     {
@@ -53,5 +53,14 @@ namespace ArduinoConnector
         }
 
         public string DeviceType { get; }
+    }
+    public class LogMessageEventArgs : EventArgs
+    {
+        public LogMessageEventArgs(string log)
+        {
+            Log = log;
+        }
+
+        public string Log { get; }
     }
 }
