@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+using ArduinoConnector;
 
 namespace CableAnalyserUnitTests
 {
@@ -7,33 +7,25 @@ namespace CableAnalyserUnitTests
     public class ArduinoConnectorTests
     {
         [TestMethod]
-        public void SendMessage_TestPinConnections()
+        public void Request_TestPinConnections()
         {
         }
 
         [TestMethod]
-        public void SendMessage_SetPinOutput()
+        public void Request_SetPinOutput()
         {
         }
 
         [TestMethod]
-        public void SendMessage_GetDeviceType()
+        public void Request_GetDeviceType()
         {
-        }
+            IArduinoConnection connection = new ArduinoEmulator();
+            IArduinoConnector connector = new ArduinoConnector.ArduinoConnector(connection);
 
-        [TestMethod]
-        public void ReceiveMessage_TestPinConnections()
-        {
-        }
-
-        [TestMethod]
-        public void ReceiveMessage_GetDeviceType()
-        {
-        }
-
-        [TestMethod]
-        public void ReceiveMessage_Error()
-        {
+            Assert.AreEqual(
+                "CableAnalyer",
+                connector.GetDeviceType()
+            );
         }
     }
 }
