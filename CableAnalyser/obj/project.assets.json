@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\CableAnalyser\\CableAnalyser.csproj",
-      "projectName": "CableAnalyser",
-      "projectPath": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\CableAnalyser\\CableAnalyser.csproj",
+      "projectUniqueName": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\CableAnalyser\\CableAnalyser.Analyser.csproj",
+      "projectName": "CableAnalyser.Analyser",
+      "projectPath": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\CableAnalyser\\CableAnalyser.Analyser.csproj",
       "packagesPath": "C:\\Users\\Jamie\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\CableAnalyser\\obj\\",
       "projectStyle": "PackageReference",

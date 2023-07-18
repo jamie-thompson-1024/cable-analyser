@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vf6gqD6c5gMZc2pW/h1uTt0rZlU9BkpRgXZoANtuOj/bOkWFGxgppoeOc0KXh0WMGQ0BezKYpA5iXPqdJ7laug==",
+  "dgSpecHash": "YBVfD8U8MjynXfWejfNWT3LLJKNLIa8hHVtGSeed2fj19NhBvIG4D859JAvsrg5soXQrutryyCrE1sloIkp7sg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\ArduinoConnector\\ArduinoConnector.csproj",
+  "projectFilePath": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\ArduinoConnector\\CableAnalyser.Connector.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

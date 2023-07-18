@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\ArduinoConnector\\ArduinoConnector.csproj",
-      "projectName": "ArduinoConnector",
-      "projectPath": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\ArduinoConnector\\ArduinoConnector.csproj",
+      "projectUniqueName": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\ArduinoConnector\\CableAnalyser.Connector.csproj",
+      "projectName": "CableAnalyser.Connector",
+      "projectPath": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\ArduinoConnector\\CableAnalyser.Connector.csproj",
       "packagesPath": "C:\\Users\\Jamie\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Jamie\\source\\repos\\jamie-thompson-1024\\cable-analyser\\ArduinoConnector\\obj\\",
       "projectStyle": "PackageReference",

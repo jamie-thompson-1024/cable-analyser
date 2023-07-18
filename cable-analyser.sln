@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArduinoConnector", "ArduinoConnector\ArduinoConnector.csproj", "{922DD197-7588-4DFE-8964-6DD326AFF5B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser.Connector", "ArduinoConnector\CableAnalyser.Connector.csproj", "{922DD197-7588-4DFE-8964-6DD326AFF5B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser", "CableAnalyser\CableAnalyser.csproj", "{E00A9661-121E-47A2-A7FB-C1B3527D4096}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser.Analyser", "CableAnalyser\CableAnalyser.Analyser.csproj", "{E00A9661-121E-47A2-A7FB-C1B3527D4096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyserGUI", "CableAnalyserGUI\CableAnalyserGUI.csproj", "{43515A27-D66B-415D-8DBF-AC328389B561}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.GUI", "CableAnalyserGUI\CableAnalyser.GUI.csproj", "{43515A27-D66B-415D-8DBF-AC328389B561}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyserUnitTests", "CableAnalyserUnitTests\CableAnalyserUnitTests.csproj", "{2BE83ACF-7333-4314-9121-51409223D92E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.Tests", "CableAnalyserUnitTests\CableAnalyser.Tests.csproj", "{2BE83ACF-7333-4314-9121-51409223D92E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

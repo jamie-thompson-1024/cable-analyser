@@ -57,17 +57,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ArduinoConnector\ArduinoConnector.csproj">
+    <ProjectReference Include="..\ArduinoConnector\CableAnalyser.Connector.csproj">
       <Project>{922dd197-7588-4dfe-8964-6dd326aff5b4}</Project>
-      <Name>ArduinoConnector</Name>
+      <Name>CableAnalyser.Connector</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CableAnalyserGUI\CableAnalyserGUI.csproj">
+    <ProjectReference Include="..\CableAnalyserGUI\CableAnalyser.GUI.csproj">
       <Project>{43515a27-d66b-415d-8dbf-ac328389b561}</Project>
-      <Name>CableAnalyserGUI</Name>
+      <Name>CableAnalyser.GUI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CableAnalyser\CableAnalyser.csproj">
+    <ProjectReference Include="..\CableAnalyser\CableAnalyser.Analyser.csproj">
       <Project>{e00a9661-121e-47a2-a7fb-c1b3527d4096}</Project>
-      <Name>CableAnalyser</Name>
+      <Name>CableAnalyser.Analyser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

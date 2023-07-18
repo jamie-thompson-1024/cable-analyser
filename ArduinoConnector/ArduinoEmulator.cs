@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ArduinoConnector
 {
@@ -36,14 +38,19 @@ namespace ArduinoConnector
 
         public void SendMessage(string message)
         {
-            string[] arguments = message.Split(' ');
+            Task task = new Task(() => {
+                Thread.Sleep(250);
 
-            switch (arguments[0])
-            {
-                case "GetDeviceType":
-                    MessageReceived(this, new ArduinoMessageReceivedEventArgs("DeviceType CableAnalyer"));
-                    break;
-            }
+                string[] arguments = message.Split(' ');
+
+                switch (arguments[0])
+                {
+                    case "GetDeviceType":
+                        MessageReceived(this, new ArduinoMessageReceivedEventArgs("DeviceType CableAnalyer"));
+                        break;
+                }
+            });
+            task.Start();
         }
     }
 }
