@@ -13,10 +13,10 @@ namespace ArduinoConnector
         event EventHandler<ArduinoMessageSentEventArgs> MessageSent;
         event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
 
-        List<(MessageDirection, string)> MessageHistory{ get; }
+        (MessageDirection, string)[] MessageHistory { get; }
         string[] AvaiablePorts { get; }
         void SendMessage(string message);
-        void OpenConnection();
+        void OpenConnection(string portName);
         void CloseConnection();
     }
 }

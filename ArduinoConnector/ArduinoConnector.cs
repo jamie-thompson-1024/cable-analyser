@@ -140,7 +140,7 @@ namespace ArduinoConnector
 
             if (_responseArgs == null)
             {
-                throw new TimeoutException("Timedout Waiting for Response from Arduino");
+                throw new TimeoutException("Timeout Waiting for Response from Arduino");
             }
 
             if (_responseArgs[0].Equals("Error"))

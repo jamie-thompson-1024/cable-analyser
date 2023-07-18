@@ -66,6 +66,7 @@ void loop() {
 
     if(command.equals("GetDeviceType")) {
       Serial.println("DeviceType CableAnalyser");
+      return;
     }
     
     if(command.equals("SetPinOutput")) {
@@ -79,6 +80,7 @@ void loop() {
       if(errorCode != 0) {
         sendErrorCode(errorCode);
       }
+      return;
     }
 
     if(command.equals("TestPinConnections")) {
@@ -100,6 +102,7 @@ void loop() {
       }
 
       resetTestPins();
+      return;
     }
 
     sendErrorCode(INVALID_COMMAND);
