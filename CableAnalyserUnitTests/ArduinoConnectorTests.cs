@@ -25,7 +25,7 @@ namespace CableAnalyserUnitTests
         {
             IArduinoConnection connection = new ArduinoEmulator(pinConnections, ioPins, 250);
             IArduinoConnector connector = new ArduinoConnector.ArduinoConnector(connection);
-            connector.OpenConnection();
+            connection.OpenConnection();
 
         }
 
@@ -34,7 +34,7 @@ namespace CableAnalyserUnitTests
         {
             IArduinoConnection connection = new ArduinoEmulator(pinConnections, ioPins, 250);
             IArduinoConnector connector = new ArduinoConnector.ArduinoConnector(connection);
-            connector.OpenConnection();
+            connection.OpenConnection();
 
         }
 
@@ -43,7 +43,7 @@ namespace CableAnalyserUnitTests
         {
             IArduinoConnection connection = new ArduinoEmulator(pinConnections, ioPins, 250);
             IArduinoConnector connector = new ArduinoConnector.ArduinoConnector(connection);
-            connector.OpenConnection();
+            connection.OpenConnection();
 
             Assert.AreEqual(
                 "CableAnalyer",
@@ -56,7 +56,7 @@ namespace CableAnalyserUnitTests
         {
             IArduinoConnection connection = new ArduinoEmulator(1000);
             IArduinoConnector connector = new ArduinoConnector.ArduinoConnector(connection);
-            connector.OpenConnection();
+            connection.OpenConnection();
 
             Assert.ThrowsException<TimeoutException>(() => connector.GetDeviceType() );
         }

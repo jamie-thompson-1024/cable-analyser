@@ -6,8 +6,6 @@ namespace ArduinoConnector
 {
     public class ArduinoConnector : IArduinoConnector
     {
-        //public event EventHandler<TestPinConnectionsMessageEventArgs> TestPinConnectionsMessage;
-        //public event EventHandler<DeviceTypeMessageEventArgs> DeviceTypeMessage;
         public event EventHandler<ErrorMessageEventArgs> ErrorMessage;
         public event EventHandler<LogMessageEventArgs> LogMessage;
 
@@ -39,55 +37,7 @@ namespace ArduinoConnector
             }
 
             _autoResetEvent.Set();
-
-            /*
-            switch (commandArguments[0])
-            {
-                case "DeviceType":
-                    //OnDeviceTypeMessage(commandArguments.ToArray());
-                    break;
-                case "TestPinConnectionsResults":
-                    //OnTestPinConnectionsMessage(commandArguments.ToArray());
-                    break;
-                case "Error":
-                    //OnErrorMessage(commandArguments.ToArray());
-                    break;
-            }
-            */
         }
-
-        /*
-        private void OnDeviceTypeMessage(string[] arguments)
-        {
-            string deviceType = arguments[0];
-            //DeviceTypeMessage(this, new DeviceTypeMessageEventArgs(deviceType));
-        }
-
-        private void OnErrorMessage(string[] arguments)
-        {
-            ArduinoErrorCode errorCode = (ArduinoErrorCode)int.Parse(arguments[0]);
-            ErrorMessage(this, new ErrorMessageEventArgs(errorCode));
-        }
-
-        private void OnTestPinConnectionsMessage(string[] arguments)
-        {
-            int pin = int.Parse(arguments[0]);
-            int[] testedPins = {};
-
-            if (!arguments[1].Equals("N/C"))
-            {
-                testedPins = Array.ConvertAll<string, int>(
-                    arguments[1].Split(','),
-                    new Converter<string, int>(x => int.Parse(x))
-                );
-            }
-
-            //TestPinConnectionsMessage(
-            //    this,
-            //    new TestPinConnectionsMessageEventArgs(pin, testedPins)
-            //);
-        }
-        */
 
         public int[] TestPinConnections(int pin, int[] testPins)
         {
