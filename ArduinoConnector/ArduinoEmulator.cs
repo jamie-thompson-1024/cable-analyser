@@ -24,6 +24,10 @@ namespace ArduinoConnector
         public ArduinoEmulator(int timeout)
         {
             _timeout = timeout;
+            MessageReceived += (object sender, ArduinoMessageReceivedEventArgs e) =>
+            {
+                _messageHistory.Add((MessageDirection.SEND, e.Message));
+            };
         }
 
         public ArduinoEmulator((int, int)[] pinConnections, int[] ioPins, int timeout)
@@ -31,6 +35,11 @@ namespace ArduinoConnector
             _pinConnections = pinConnections;
             _ioPins = ioPins;
             _timeout = timeout;
+
+            MessageReceived += (object sender, ArduinoMessageReceivedEventArgs e) =>
+            {
+                _messageHistory.Add((MessageDirection.SEND, e.Message));
+            };
         }
 
         public void CloseConnection()
@@ -48,6 +57,8 @@ namespace ArduinoConnector
             if(!_connected) {
                 throw new Exception("Failed to send message, no connection established");
             }
+
+            _messageHistory.Add((MessageDirection.SEND, message));
 
             Task task = new Task(() => {
                 Thread.Sleep(_timeout);
@@ -85,7 +96,7 @@ namespace ArduinoConnector
 
         private void TestPinConnections(string[] arguments)
         {
-
+            
         }
 
         private void SendError(string message)
