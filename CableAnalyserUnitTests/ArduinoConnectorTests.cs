@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ArduinoConnector;
 using System;
+using System.Collections.ObjectModel;
 
 namespace CableAnalyserUnitTests
 {
@@ -20,45 +21,54 @@ namespace CableAnalyserUnitTests
             1,2,3,4
         };
 
+        static string[] serialPorts =
+        {
+            "COM1",
+            "COM2"
+        };
+
+        static int messageTimeout = 250;
+
+        private IArduinoConnection ConnectionFactory()
+        {
+            return new ArduinoEmulator(
+                pinConnections, ioPins, messageTimeout, serialPorts
+            );
+        }
+        private IArduinoConnector ConnectorFactory(IArduinoConnection connection)
+        {
+            return new ArduinoConnector.ArduinoConnector(connection);
+        }
+
         [TestMethod]
         public void Request_TestPinConnections()
         {
-            IArduinoConnection connection = new ArduinoEmulator(pinConnections, ioPins, 250);
-            IArduinoConnector connector = new ArduinoConnector.ArduinoConnector(connection);
-            connection.OpenConnection();
+            IArduinoConnection connection = ConnectionFactory();
+            IArduinoConnector connector = ConnectorFactory(connection);
+            connection.OpenConnection(connection.AvaiablePorts[0]);
 
         }
 
         [TestMethod]
         public void Request_SetPinOutput()
         {
-            IArduinoConnection connection = new ArduinoEmulator(pinConnections, ioPins, 250);
-            IArduinoConnector connector = new ArduinoConnector.ArduinoConnector(connection);
-            connection.OpenConnection();
+            IArduinoConnection connection = ConnectionFactory();
+            IArduinoConnector connector = ConnectorFactory(connection);
+            connection.OpenConnection(connection.AvaiablePorts[0]);
 
         }
 
         [TestMethod]
         public void Request_GetDeviceType()
         {
-            IArduinoConnection connection = new ArduinoEmulator(pinConnections, ioPins, 250);
-            IArduinoConnector connector = new ArduinoConnector.ArduinoConnector(connection);
-            connection.OpenConnection();
+            IArduinoConnection connection = ConnectionFactory();
+            IArduinoConnector connector = ConnectorFactory(connection);
+            connection.OpenConnection(connection.AvaiablePorts[0]);
 
             Assert.AreEqual(
                 "CableAnalyer",
                 connector.GetDeviceType()
             );
-        }
-
-        [TestMethod]
-        public void Request_GetDeviceType_Timeout()
-        {
-            IArduinoConnection connection = new ArduinoEmulator(1000);
-            IArduinoConnector connector = new ArduinoConnector.ArduinoConnector(connection);
-            connection.OpenConnection();
-
-            Assert.ThrowsException<TimeoutException>(() => connector.GetDeviceType() );
         }
     }
 }

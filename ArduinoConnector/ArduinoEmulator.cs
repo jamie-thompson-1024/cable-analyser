@@ -10,7 +10,7 @@ namespace ArduinoConnector
     {
         public (MessageDirection, string)[] MessageHistory => _messageHistory.ToArray();
 
-        public string[] AvaiablePorts => throw new NotImplementedException();
+        public string[] AvaiablePorts => _ports.ToArray();
 
         public event EventHandler<ArduinoMessageSentEventArgs> MessageSent;
         public event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
@@ -20,21 +20,14 @@ namespace ArduinoConnector
         private int[] _ioPins;
         private int _timeout;
         private bool _connected = false;
+        private string[] _ports;
 
-        public ArduinoEmulator(int timeout)
-        {
-            _timeout = timeout;
-            MessageReceived += (object sender, ArduinoMessageReceivedEventArgs e) =>
-            {
-                _messageHistory.Add((MessageDirection.SEND, e.Message));
-            };
-        }
-
-        public ArduinoEmulator((int, int)[] pinConnections, int[] ioPins, int timeout)
+        public ArduinoEmulator((int, int)[] pinConnections, int[] ioPins, int timeout, string[] ports)
         {
             _pinConnections = pinConnections;
             _ioPins = ioPins;
             _timeout = timeout;
+            _ports = ports;
 
             MessageReceived += (object sender, ArduinoMessageReceivedEventArgs e) =>
             {

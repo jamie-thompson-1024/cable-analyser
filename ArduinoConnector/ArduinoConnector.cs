@@ -108,15 +108,5 @@ namespace ArduinoConnector
 
             return deviceType;
         }
-
-        public void OpenConnection()
-        {
-            _connection.OpenConnection();
-        }
-
-        public void CloseConnection()
-        {
-            _connection.CloseConnection();
-        }
     }
 }
