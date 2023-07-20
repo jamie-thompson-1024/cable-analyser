@@ -1,3 +1,4 @@
 - Add all error responses too emulator (No thrown exceptions, only error codes, and return to exit fuction)
 - Finish all unit tests
-- 
+- Start Work on Logic
+- Start Work on GUI

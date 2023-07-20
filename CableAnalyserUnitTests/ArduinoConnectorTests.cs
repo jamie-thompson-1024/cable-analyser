@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ArduinoConnector;
 using System;
+using System.Linq;
 using System.Collections.ObjectModel;
 
 namespace CableAnalyserUnitTests
@@ -13,7 +14,8 @@ namespace CableAnalyserUnitTests
             (5,9),
             (6,10),
             (7,11),
-            (8,12),    
+            (8,12),
+            (8,10),
         };
 
         static int[] testPins =
@@ -52,6 +54,15 @@ namespace CableAnalyserUnitTests
             IArduinoConnector connector = ConnectorFactory(connection);
             connection.OpenConnection(connection.AvaiablePorts[0]);
 
+            int pin = 11;
+            int[] testPins = { 7, 10, 6, 9 };
+
+            int[] expected = { 7 };
+
+            Assert.IsTrue(Enumerable.SequenceEqual(
+                expected,
+                connector.TestPinConnections(pin, testPins)
+            ));
         }
 
         [TestMethod]

@@ -118,6 +118,24 @@ namespace ArduinoConnector
                     return;
                 }
             };
+
+            List<string> connectedPins = new List<string>();
+
+            foreach (int testPin in testPins)
+            {
+                foreach ((int,int) pair in _pinConnections)
+                {
+                    if ((pair.Item1 == pin && pair.Item2 == testPin) || (pair.Item2 == pin && pair.Item1 == testPin))
+                    {
+                        connectedPins.Add(testPin.ToString());
+                    }
+                }
+            }
+
+            MessageReceived(
+                this,
+                new ArduinoMessageReceivedEventArgs($"TestPinConnectionsResults {pin} {string.Join(",", connectedPins.ToArray())}")
+            );
             
         }
 
