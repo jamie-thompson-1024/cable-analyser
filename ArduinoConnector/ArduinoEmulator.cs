@@ -11,6 +11,7 @@ namespace ArduinoConnector
         public (MessageDirection, string)[] MessageHistory => _messageHistory.ToArray();
 
         public string[] AvaiablePorts => _ports.ToArray();
+        public string ConnectedPort => _connectedPort;
 
         public event EventHandler<ArduinoMessageSentEventArgs> MessageSent;
         public event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
@@ -19,7 +20,7 @@ namespace ArduinoConnector
         private (int, int)[] _pinConnections;
         private int[] _ioPins;
         private int _timeout;
-        private bool _connected = false;
+        private string _connectedPort;
         private string[] _ports;
 
         public ArduinoEmulator((int, int)[] pinConnections, int[] ioPins, int timeout, string[] ports)
@@ -37,17 +38,23 @@ namespace ArduinoConnector
 
         public void CloseConnection()
         {
-            _connected = false;
+            _connectedPort = null;
         }
 
         public void OpenConnection(string portName)
         {
-            _connected = true;
+            if (AvaiablePorts.Contains(portName))
+            {
+                _connectedPort = portName;
+            } else
+            {
+                throw new Exception($"Port {portName} not available");
+            }
         }
 
         public void SendMessage(string message)
         {
-            if(!_connected) {
+            if(_connectedPort == null) {
                 throw new Exception("Failed to send message, no connection established");
             }
 

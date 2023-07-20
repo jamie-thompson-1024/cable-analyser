@@ -14,6 +14,7 @@ namespace ArduinoConnector
         event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
 
         (MessageDirection, string)[] MessageHistory { get; }
+        string ConnectedPort { get; }
         string[] AvaiablePorts { get; }
         void SendMessage(string message);
         void OpenConnection(string portName);
