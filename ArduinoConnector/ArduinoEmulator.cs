@@ -18,17 +18,19 @@ namespace ArduinoConnector
 
         private List<(MessageDirection, string)> _messageHistory = new List<(MessageDirection, string)> ();
         private (int, int)[] _pinConnections;
+        private int[] _testPins;
         private int[] _ioPins;
         private int _timeout;
         private string _connectedPort;
         private string[] _ports;
 
-        public ArduinoEmulator((int, int)[] pinConnections, int[] ioPins, int timeout, string[] ports)
+        public ArduinoEmulator((int, int)[] pinConnections, int[] ioPins, int[] testPins, int timeout, string[] ports)
         {
             _pinConnections = pinConnections;
             _ioPins = ioPins;
             _timeout = timeout;
             _ports = ports;
+            _testPins = testPins;
 
             MessageReceived += (object sender, ArduinoMessageReceivedEventArgs e) =>
             {
@@ -96,6 +98,26 @@ namespace ArduinoConnector
 
         private void TestPinConnections(string[] arguments)
         {
+            int pin = int.Parse(arguments[1]);
+            int[] testPins = Array.ConvertAll(
+                arguments[2].Split(','), 
+                new Converter<string, int>((pinStr) => int.Parse(pinStr))
+            );
+
+            if (!_testPins.Contains(pin))
+            {
+                SendError("INVALID_IO_PIN");
+                return;
+            }
+
+            foreach (int testPin in testPins)
+            {
+                if(!_testPins.Contains(testPin))
+                {
+                    SendError("INVALID_TEST_PIN");
+                    return;
+                }
+            };
             
         }
 
