@@ -16,6 +16,11 @@ namespace CableAnalyserUnitTests
             (8,12),    
         };
 
+        static int[] testPins =
+        {
+            5,6,7,8,9,10,11,12
+        };
+
         static int[] ioPins =
         {
             1,2,3,4
@@ -32,7 +37,7 @@ namespace CableAnalyserUnitTests
         private IArduinoConnection ConnectionFactory()
         {
             return new ArduinoEmulator(
-                pinConnections, ioPins, messageTimeout, serialPorts
+                pinConnections, ioPins, testPins, messageTimeout, serialPorts
             );
         }
         private IArduinoConnector ConnectorFactory(IArduinoConnection connection)
