@@ -2,3 +2,5 @@
 - Finish all unit tests
 - Start Work on Logic
 - Start Work on GUI
+- Remove Valid Pin List from Arduino?
+	- Should Arduino program be universal, and configuration selected on computer?
