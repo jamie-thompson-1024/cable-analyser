@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.GUI", "CableA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.Tests", "CableAnalyserUnitTests\CableAnalyser.Tests.csproj", "{2BE83ACF-7333-4314-9121-51409223D92E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C119CE1-76DB-406D-9DEB-E5380B18EF61}"
+	ProjectSection(SolutionItems) = preProject
+		TODO = TODO
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
