@@ -7,6 +7,8 @@ namespace ArduinoConnector
     public class ArduinoSerialConnection : IArduinoConnection
     {
         public (MessageDirection, string)[] MessageHistory => _messageHistory.ToArray();
+        public string[] AvaiablePorts => SerialPort.GetPortNames();
+        public string ConnectedPort => throw new NotImplementedException();
 
         public event EventHandler<ArduinoMessageSentEventArgs> MessageSent;
         public event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
@@ -19,8 +21,6 @@ namespace ArduinoConnector
             _serialPort = new SerialPort(portName, baudRate);
             _serialPort.DataReceived += ReceivedMessageHandler;
         }
-
-        public string[] AvaiablePorts => SerialPort.GetPortNames();
 
         public void SendMessage(string message)
         {
@@ -43,6 +43,7 @@ namespace ArduinoConnector
         }
         public void OpenConnection(string portName)
         {
+            _serialPort.PortName = portName;
             _serialPort.Open();
         }
         public void CloseConnection()
