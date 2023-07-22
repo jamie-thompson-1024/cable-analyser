@@ -9,6 +9,6 @@ namespace ArduinoConnector
 
         string GetDeviceType();
         int[] TestPinConnections(int pin, int[] testPins);
-        void SetPinOutput(int pin, bool state);
+        bool SetPinOutput(int pin, bool state);
     }
 }
