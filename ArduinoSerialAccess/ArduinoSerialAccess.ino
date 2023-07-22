@@ -169,6 +169,8 @@ int setPinOutput(int pin, int state) {
     pinMode(pin, INPUT);
   }
 
+  Serial.println("SetPinOutput Successful");
+
   return 0;
 }
 

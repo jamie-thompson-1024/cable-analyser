@@ -43,7 +43,7 @@ namespace ArduinoConnector
             _connectedPort = null;
         }
 
-        public void OpenConnection(string portName)
+        public void OpenConnection(string portName, int baudRate)
         {
             if (AvaiablePorts.Contains(portName))
             {
@@ -94,6 +94,11 @@ namespace ArduinoConnector
             {
                 SendError("INVALID_IO_PIN");
             }
+
+            MessageReceived(
+                this,
+                new ArduinoMessageReceivedEventArgs($"SetPinOutput Successful")
+            );
         }
 
         private void TestPinConnections(string[] arguments)

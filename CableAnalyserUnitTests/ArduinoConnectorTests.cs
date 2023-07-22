@@ -34,20 +34,30 @@ namespace CableAnalyserUnitTests
             "COM2"
         };
 
-        static int messageTimeout = 2000;
+        static int messageTimeout = 500;
 
-        static bool useArduino = false;
+        static bool useArduino = true;
 
         private IArduinoConnection ConnectionFactory()
         {
+            IArduinoConnection connection;
             if (useArduino)
             {
-                return new ArduinoSerialConnection();
+                connection = new ArduinoSerialConnection();
+            }
+            else
+            {
+                connection =  new ArduinoEmulator(
+                    pinConnections, ioPins, testPins, messageTimeout, serialPorts
+                );
             }
 
-            return new ArduinoEmulator(
-                pinConnections, ioPins, testPins, messageTimeout, serialPorts
-            );
+            if (connection.AvaiablePorts.Length == 0)
+            {
+                throw new Exception("No Avaialble Ports");
+            }
+
+            return connection;
         }
         private IArduinoConnector ConnectorFactory(IArduinoConnection connection)
         {
@@ -70,6 +80,8 @@ namespace CableAnalyserUnitTests
                 expected,
                 connector.TestPinConnections(pin, testPins)
             ));
+
+            connection.CloseConnection();
         }
 
         [TestMethod]
@@ -79,6 +91,11 @@ namespace CableAnalyserUnitTests
             IArduinoConnector connector = ConnectorFactory(connection);
             connection.OpenConnection(connection.AvaiablePorts[0], 9600);
 
+            Assert.IsTrue(
+                connector.SetPinOutput(ioPins[0], true)
+            );
+
+            connection.CloseConnection();
         }
 
         [TestMethod]
@@ -92,6 +109,8 @@ namespace CableAnalyserUnitTests
                 "CableAnalyer",
                 connector.GetDeviceType()
             );
+
+            connection.CloseConnection();
         }
     }
 }
