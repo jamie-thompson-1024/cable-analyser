@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Diagnostics;
 using System.Threading;
 
 namespace ArduinoConnector
@@ -11,7 +12,7 @@ namespace ArduinoConnector
 
         IArduinoConnection _connection;
         AutoResetEvent _autoResetEvent;
-        int _timeout = 1500;
+        int _timeout = 2000;
 
         string[] _responseArgs;
 
@@ -24,6 +25,8 @@ namespace ArduinoConnector
 
         private void MessageReceivedHandler(object sender, ArduinoMessageReceivedEventArgs e)
         {
+            Debug.Print("Messgae Rx");
+
             string rawMessage = e.Message;
             string[] commandArguments = rawMessage.Split(' ');
 
@@ -37,23 +40,31 @@ namespace ArduinoConnector
                 );
             }
 
+            Debug.Print("Messgae Rx");
+
             _autoResetEvent.Set();
         }
 
-        public int[] TestPinConnections(int pin, int[] testPins)
+        private void SendMessageWait(string message)
         {
-            _connection.SendMessage($"TestPinConnections {pin} {String.Join(",", testPins)}");
+            _responseArgs = null;
+            _connection.SendMessage(message);
             _autoResetEvent.WaitOne(_timeout);
 
             if (_responseArgs == null)
             {
-                throw new TimeoutException("Timedout Waiting for Response from Arduino");
+                throw new TimeoutException("Timeout Waiting for Response from Arduino");
             }
 
             if (_responseArgs[0].Equals("Error"))
             {
                 throw new Exception($"Error {_responseArgs[1]}");
             }
+        }
+
+        public int[] TestPinConnections(int pin, int[] testPins)
+        {
+            SendMessageWait($"TestPinConnections {pin} {String.Join(",", testPins)}");
 
             if (!_responseArgs[0].Equals("TestPinConnectionsResults"))
             {
@@ -69,35 +80,30 @@ namespace ArduinoConnector
 
             if (!_responseArgs[2].Equals("N/C"))
             {
-                testedPins = Array.ConvertAll<string, int>(
+                testedPins = Array.ConvertAll(
                     _responseArgs[2].Split(','),
                     new Converter<string, int>(x => int.Parse(x))
                 );
             }
 
-            _responseArgs = null;
             return testedPins;
         }
 
-        public void SetPinOutput(int pin, bool state)
+        public bool SetPinOutput(int pin, bool state)
         {
-            _connection.SendMessage($"SetPinOutput {pin} {(state ? "1" : "0")}");
+            SendMessageWait($"SetPinOutput {pin} {(state ? "1" : "0")}");
+
+            if (!_responseArgs[0].Equals("SetPinOutput"))
+            {
+                throw new Exception($"Unexpected Response, Expected 'SetPinOutput' Got '{_responseArgs[0]}'");
+            }
+
+            return true;
         }
 
         public string GetDeviceType()
         {
-            _connection.SendMessage("GetDeviceType");
-            _autoResetEvent.WaitOne(_timeout);
-
-            if (_responseArgs == null)
-            {
-                throw new TimeoutException("Timeout Waiting for Response from Arduino");
-            }
-
-            if (_responseArgs[0].Equals("Error"))
-            {
-                throw new Exception($"Error {_responseArgs[1]}");
-            }
+            SendMessageWait("GetDeviceType");
 
             if (!_responseArgs[0].Equals("DeviceType"))
             {
@@ -105,7 +111,6 @@ namespace ArduinoConnector
             }
 
             string deviceType = _responseArgs[1];
-            _responseArgs = null;
 
             return deviceType;
         }
