@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO.Ports;
 
 namespace ArduinoConnector
@@ -20,12 +21,16 @@ namespace ArduinoConnector
         {
             _serialPort = new SerialPort();
             _serialPort.DataReceived += ReceivedMessageHandler;
+            _serialPort.Dispose();
+
+            _messageHistory = new List<(MessageDirection, string)>();
         }
 
         public void SendMessage(string message)
         {
             _serialPort.WriteLine(message);
             _messageHistory.Add((MessageDirection.SEND, message));
+
             MessageSent(
                 this, 
                 new ArduinoMessageSentEventArgs(message)
@@ -36,6 +41,7 @@ namespace ArduinoConnector
             SerialPort port = (SerialPort)sender;
             string message = port.ReadLine();
             _messageHistory.Add((MessageDirection.RECEIVE, message));
+
             MessageReceived(
                 this,
                 new ArduinoMessageReceivedEventArgs(message)
@@ -43,13 +49,26 @@ namespace ArduinoConnector
         }
         public void OpenConnection(string portName, int baudRate)
         {
+            _serialPort.Close();
+            _serialPort.Dispose();
+
             _serialPort.PortName = portName;
             _serialPort.BaudRate = baudRate;
+
+            _serialPort.Parity = Parity.Even;
+            _serialPort.StopBits = StopBits.One;
+            _serialPort.DataBits = 8;
+
+            _serialPort.Handshake = Handshake.None;
+            _serialPort.DtrEnable = false;
+            _serialPort.RtsEnable = false;
+
             _serialPort.Open();
         }
         public void CloseConnection()
         {
             _serialPort.Close();
+            _serialPort.Dispose();
         }
     }
 }
