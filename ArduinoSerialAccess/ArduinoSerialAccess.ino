@@ -5,6 +5,7 @@ void resetTestPins();
 bool isValidTestPin(int pin);
 bool isValidIOPin(int pin);
 String popFirstArgument(String* inputString, char delimiter);
+void sendLog(String message);
 
 /* ========================
  * =  Command reference   =
@@ -227,4 +228,8 @@ String popFirstArgument(String* inputString, char delimiter) {
   } 
   
   return argument;
+}
+
+void sendLog(String message) {
+  Serial.println(String("Log") + message);
 }

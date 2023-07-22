@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Ports;
+using System.Threading;
 
 namespace ArduinoConnector
 {
@@ -28,10 +29,10 @@ namespace ArduinoConnector
 
         public void SendMessage(string message)
         {
-            _serialPort.WriteLine(message);
+            _serialPort.Write(message);
             _messageHistory.Add((MessageDirection.SEND, message));
 
-            MessageSent(
+            MessageSent?.Invoke(
                 this, 
                 new ArduinoMessageSentEventArgs(message)
             );
@@ -42,7 +43,7 @@ namespace ArduinoConnector
             string message = port.ReadLine();
             _messageHistory.Add((MessageDirection.RECEIVE, message));
 
-            MessageReceived(
+            MessageReceived?.Invoke(
                 this,
                 new ArduinoMessageReceivedEventArgs(message)
             );

@@ -85,7 +85,7 @@ namespace ArduinoConnector
 
         private void GetDeviceType(string[] arguments)
         {
-            MessageReceived(this, new ArduinoMessageReceivedEventArgs("DeviceType CableAnalyer"));
+            MessageReceived?.Invoke(this, new ArduinoMessageReceivedEventArgs("DeviceType CableAnalyer"));
         }
 
         private void SetPinOutput(string[] arguments)
@@ -95,7 +95,7 @@ namespace ArduinoConnector
                 SendError("INVALID_IO_PIN");
             }
 
-            MessageReceived(
+            MessageReceived?.Invoke(
                 this,
                 new ArduinoMessageReceivedEventArgs($"SetPinOutput Successful")
             );
@@ -137,7 +137,7 @@ namespace ArduinoConnector
                 }
             }
 
-            MessageReceived(
+            MessageReceived?.Invoke(
                 this,
                 new ArduinoMessageReceivedEventArgs($"TestPinConnectionsResults {pin} {string.Join(",", connectedPins.ToArray())}")
             );
@@ -146,7 +146,7 @@ namespace ArduinoConnector
 
         private void SendError(string message)
         {
-            MessageReceived(this, new ArduinoMessageReceivedEventArgs($"Error {message}"));
+            MessageReceived?.Invoke(this, new ArduinoMessageReceivedEventArgs($"Error {message}"));
         }
     }
 }

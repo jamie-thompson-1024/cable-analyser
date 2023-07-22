@@ -34,26 +34,39 @@ namespace ArduinoConnector
 
             if (_responseArgs[0].Equals("Error"))
             {
-                ErrorMessage(
+                ErrorMessage?.Invoke(
                     this,
                     new ErrorMessageEventArgs(_responseArgs[1])
+                );
+            }
+
+            if (_responseArgs[0].Equals("Log"))
+            {
+                LogMessage?.Invoke(
+                    this,
+                    new LogMessageEventArgs(_responseArgs[1])
                 );
             }
 
             Debug.Print("Messgae Rx");
 
             _autoResetEvent.Set();
+            _autoResetEvent.Close();
         }
 
         private void SendMessageWait(string message)
         {
             _responseArgs = null;
             _connection.SendMessage(message);
-            _autoResetEvent.WaitOne(_timeout);
+
+            if (!_autoResetEvent.WaitOne(_timeout))
+            {
+                throw new TimeoutException("Timeout Waiting for Response from Arduino");
+            }
 
             if (_responseArgs == null)
             {
-                throw new TimeoutException("Timeout Waiting for Response from Arduino");
+                throw new TimeoutException("No / Empty Response from Arduino");
             }
 
             if (_responseArgs[0].Equals("Error"))
