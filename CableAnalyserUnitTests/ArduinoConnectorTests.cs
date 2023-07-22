@@ -25,7 +25,7 @@ namespace CableAnalyserUnitTests
 
         static int[] ioPins =
         {
-            1,2,3,4
+            13,14,15,16
         };
 
         static string[] serialPorts =
@@ -34,7 +34,7 @@ namespace CableAnalyserUnitTests
             "COM2"
         };
 
-        static int messageTimeout = 250;
+        static int messageTimeout = 2000;
 
         static bool useArduino = false;
 

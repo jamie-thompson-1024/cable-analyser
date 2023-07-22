@@ -43,12 +43,12 @@ String popFirstArgument(String* inputString, char delimiter);
 #define MAX_TEST_PINS 60
 
 int VALID_TEST_PINS[] = {
-  48, 49, 50, 51, 52
+  5,6,7,8,9,10,11,12
 };
 const int VALID_TEST_PIN_COUNT = sizeof(VALID_TEST_PINS) / sizeof(int);
 
 int VALID_IO_PINS[] = {
-  30
+  13,14,15,16
 };
 const int VALID_IO_PIN_COUNT = sizeof(VALID_IO_PINS) / sizeof(int);
 
