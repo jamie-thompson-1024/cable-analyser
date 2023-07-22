@@ -11,6 +11,7 @@ namespace ArduinoConnector
 
         IArduinoConnection _connection;
         AutoResetEvent _autoResetEvent;
+        int _timeout = 1500;
 
         string[] _responseArgs;
 
@@ -42,7 +43,7 @@ namespace ArduinoConnector
         public int[] TestPinConnections(int pin, int[] testPins)
         {
             _connection.SendMessage($"TestPinConnections {pin} {String.Join(",", testPins)}");
-            _autoResetEvent.WaitOne(500);
+            _autoResetEvent.WaitOne(_timeout);
 
             if (_responseArgs == null)
             {
@@ -86,7 +87,7 @@ namespace ArduinoConnector
         public string GetDeviceType()
         {
             _connection.SendMessage("GetDeviceType");
-            _autoResetEvent.WaitOne(500);
+            _autoResetEvent.WaitOne(_timeout);
 
             if (_responseArgs == null)
             {
