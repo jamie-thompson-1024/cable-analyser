@@ -16,9 +16,9 @@ namespace ArduinoConnector
         SerialPort _serialPort;
         List<(MessageDirection, string)> _messageHistory;
 
-        public ArduinoSerialConnection(string portName, int baudRate)
+        public ArduinoSerialConnection()
         {
-            _serialPort = new SerialPort(portName, baudRate);
+            _serialPort = new SerialPort();
             _serialPort.DataReceived += ReceivedMessageHandler;
         }
 
@@ -41,9 +41,10 @@ namespace ArduinoConnector
                 new ArduinoMessageReceivedEventArgs(message)
             );
         }
-        public void OpenConnection(string portName)
+        public void OpenConnection(string portName, int baudRate)
         {
             _serialPort.PortName = portName;
+            _serialPort.BaudRate = baudRate;
             _serialPort.Open();
         }
         public void CloseConnection()

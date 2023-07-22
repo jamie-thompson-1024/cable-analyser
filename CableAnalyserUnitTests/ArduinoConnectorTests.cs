@@ -36,8 +36,15 @@ namespace CableAnalyserUnitTests
 
         static int messageTimeout = 250;
 
+        static bool useArduino = false;
+
         private IArduinoConnection ConnectionFactory()
         {
+            if (useArduino)
+            {
+                return new ArduinoSerialConnection();
+            }
+
             return new ArduinoEmulator(
                 pinConnections, ioPins, testPins, messageTimeout, serialPorts
             );
@@ -52,7 +59,7 @@ namespace CableAnalyserUnitTests
         {
             IArduinoConnection connection = ConnectionFactory();
             IArduinoConnector connector = ConnectorFactory(connection);
-            connection.OpenConnection(connection.AvaiablePorts[0]);
+            connection.OpenConnection(connection.AvaiablePorts[0], 9600);
 
             int pin = 11;
             int[] testPins = { 7, 10, 6, 9 };
@@ -70,7 +77,7 @@ namespace CableAnalyserUnitTests
         {
             IArduinoConnection connection = ConnectionFactory();
             IArduinoConnector connector = ConnectorFactory(connection);
-            connection.OpenConnection(connection.AvaiablePorts[0]);
+            connection.OpenConnection(connection.AvaiablePorts[0], 9600);
 
         }
 
@@ -79,7 +86,7 @@ namespace CableAnalyserUnitTests
         {
             IArduinoConnection connection = ConnectionFactory();
             IArduinoConnector connector = ConnectorFactory(connection);
-            connection.OpenConnection(connection.AvaiablePorts[0]);
+            connection.OpenConnection(connection.AvaiablePorts[0], 9600);
 
             Assert.AreEqual(
                 "CableAnalyer",

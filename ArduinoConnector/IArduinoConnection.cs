@@ -17,7 +17,7 @@ namespace ArduinoConnector
         string ConnectedPort { get; }
         string[] AvaiablePorts { get; }
         void SendMessage(string message);
-        void OpenConnection(string portName);
+        void OpenConnection(string portName, int baudRate);
         void CloseConnection();
     }
 }
