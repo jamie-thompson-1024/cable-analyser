@@ -5,18 +5,18 @@ using System.Threading;
 
 namespace ArduinoConnector
 {
-    public class ArduinoConnector : IArduinoConnector
+    public class ArduinoConnector : IDeviceConnector
     {
         public event EventHandler<ErrorMessageEventArgs> ErrorMessage;
         public event EventHandler<LogMessageEventArgs> LogMessage;
 
-        IArduinoConnection _connection;
+        IDeviceConnection _connection;
         AutoResetEvent _autoResetEvent;
         int _timeout = 2000;
 
         string[] _responseArgs;
 
-        public ArduinoConnector(IArduinoConnection connection)
+        public ArduinoConnector(IDeviceConnection connection)
         {
             _connection = connection;
             _connection.MessageReceived += MessageReceivedHandler;

@@ -2,7 +2,7 @@
 
 namespace ArduinoConnector
 {
-    public interface IArduinoConnector
+    public interface IDeviceConnector
     {
         event EventHandler<ErrorMessageEventArgs> ErrorMessage;
         event EventHandler<LogMessageEventArgs> LogMessage;

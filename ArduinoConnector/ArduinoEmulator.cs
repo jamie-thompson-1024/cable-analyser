@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArduinoConnector
 {
-    public class ArduinoEmulator : IArduinoConnection
+    public class ArduinoEmulator : IDeviceConnection
     {
         public (MessageDirection, string)[] MessageHistory => _messageHistory.ToArray();
 

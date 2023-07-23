@@ -36,14 +36,16 @@ namespace CableAnalyserUnitTests
 
         static int messageTimeout = 500;
 
+        static int baudRate = 57600;
+
         static bool useArduino = true;
 
-        private IArduinoConnection ConnectionFactory()
+        private IDeviceConnection ConnectionFactory()
         {
-            IArduinoConnection connection;
+            IDeviceConnection connection;
             if (useArduino)
             {
-                connection = new ArduinoSerialConnection();
+                connection = new SerialConnection_Stream();
             }
             else
             {
@@ -59,7 +61,7 @@ namespace CableAnalyserUnitTests
 
             return connection;
         }
-        private IArduinoConnector ConnectorFactory(IArduinoConnection connection)
+        private IDeviceConnector ConnectorFactory(IDeviceConnection connection)
         {
             return new ArduinoConnector.ArduinoConnector(connection);
         }
@@ -67,9 +69,9 @@ namespace CableAnalyserUnitTests
         [TestMethod]
         public void Request_TestPinConnections()
         {
-            IArduinoConnection connection = ConnectionFactory();
-            IArduinoConnector connector = ConnectorFactory(connection);
-            connection.OpenConnection(connection.AvaiablePorts[0], 9600);
+            IDeviceConnection connection = ConnectionFactory();
+            IDeviceConnector connector = ConnectorFactory(connection);
+            connection.OpenConnection(connection.AvaiablePorts[0], baudRate);
 
             int pin = 11;
             int[] testPins = { 7, 10, 6, 9 };
@@ -87,9 +89,9 @@ namespace CableAnalyserUnitTests
         [TestMethod]
         public void Request_SetPinOutput()
         {
-            IArduinoConnection connection = ConnectionFactory();
-            IArduinoConnector connector = ConnectorFactory(connection);
-            connection.OpenConnection(connection.AvaiablePorts[0], 9600);
+            IDeviceConnection connection = ConnectionFactory();
+            IDeviceConnector connector = ConnectorFactory(connection);
+            connection.OpenConnection(connection.AvaiablePorts[0], baudRate);
 
             Assert.IsTrue(
                 connector.SetPinOutput(ioPins[0], true)
@@ -101,9 +103,9 @@ namespace CableAnalyserUnitTests
         [TestMethod]
         public void Request_GetDeviceType()
         {
-            IArduinoConnection connection = ConnectionFactory();
-            IArduinoConnector connector = ConnectorFactory(connection);
-            connection.OpenConnection(connection.AvaiablePorts[0], 9600);
+            IDeviceConnection connection = ConnectionFactory();
+            IDeviceConnector connector = ConnectorFactory(connection);
+            connection.OpenConnection(connection.AvaiablePorts[0], baudRate);
 
             Assert.AreEqual(
                 "CableAnalyer",

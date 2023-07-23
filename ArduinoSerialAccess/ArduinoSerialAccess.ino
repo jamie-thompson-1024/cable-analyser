@@ -40,7 +40,7 @@ void sendLog(String message);
 #define INVALID_COMMAND_SYNTAX "INVALID_COMMAND_SYNTAX"
 
 // Constants
-#define BAUD_RATE 9600
+#define BAUD_RATE 57600
 #define MAX_TEST_PINS 60
 
 int VALID_TEST_PINS[] = {

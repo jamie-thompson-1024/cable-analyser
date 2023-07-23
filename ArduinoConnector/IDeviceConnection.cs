@@ -8,7 +8,7 @@ namespace ArduinoConnector
         SEND, RECEIVE
     }
 
-    public interface IArduinoConnection
+    public interface IDeviceConnection
     {
         event EventHandler<ArduinoMessageSentEventArgs> MessageSent;
         event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
