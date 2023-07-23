@@ -6,7 +6,7 @@ using System.Threading;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArduinoConnector
+namespace DeviceConnector
 {
     public class SerialConnection_Stream : IDeviceConnection
     {

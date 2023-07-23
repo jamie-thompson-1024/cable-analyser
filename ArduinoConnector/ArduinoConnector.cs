@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 
-namespace ArduinoConnector
+namespace DeviceConnector
 {
     public class ArduinoConnector : IDeviceConnector
     {

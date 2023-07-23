@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ArduinoConnector
+namespace DeviceConnector
 {
     public interface IDeviceConnector
     {

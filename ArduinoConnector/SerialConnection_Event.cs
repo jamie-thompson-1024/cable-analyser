@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
 
-namespace ArduinoConnector
+namespace DeviceConnector
 {
     public class SerialConnection_Event : IDeviceConnection
     {

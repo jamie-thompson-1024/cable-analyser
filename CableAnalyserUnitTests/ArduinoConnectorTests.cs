@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ArduinoConnector;
+using DeviceConnector;
 using System;
 using System.Linq;
 using System.Collections.ObjectModel;
@@ -63,7 +63,7 @@ namespace CableAnalyserUnitTests
         }
         private IDeviceConnector ConnectorFactory(IDeviceConnection connection)
         {
-            return new ArduinoConnector.ArduinoConnector(connection);
+            return new DeviceConnector.ArduinoConnector(connection);
         }
 
         [TestMethod]
