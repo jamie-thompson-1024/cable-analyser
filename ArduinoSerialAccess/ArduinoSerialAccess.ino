@@ -66,7 +66,7 @@ void loop() {
     String command = popFirstArgument(&serialMessage, ' ');
 
     if(command.equals("GetDeviceType")) {
-      Serial.println("DeviceType CableAnalyser");
+      Serial.print("DeviceType CableAnalyser");
       return;
     }
     
@@ -152,7 +152,7 @@ int testPinConnection(int pin, int testPins[], int testPinCount) {
     resultsMessage += "N/C";
   }
 
-  Serial.println(resultsMessage);
+  Serial.print(resultsMessage);
 
   return 0;
 }
@@ -170,7 +170,7 @@ int setPinOutput(int pin, int state) {
     pinMode(pin, INPUT);
   }
 
-  Serial.println("SetPinOutput Successful");
+  Serial.print("SetPinOutput Successful");
 
   return 0;
 }
@@ -204,7 +204,7 @@ bool isValidIOPin(int pin) {
 }
 
 void sendErrorCode(int errorCode) {
-  Serial.println(String("Error ") + String(errorCode, DEC));
+  Serial.print(String("Error ") + String(errorCode, DEC));
 }
 
 String popFirstArgument(String* inputString, char delimiter) {
@@ -231,5 +231,5 @@ String popFirstArgument(String* inputString, char delimiter) {
 }
 
 void sendLog(String message) {
-  Serial.println(String("Log") + message);
+  Serial.print(String("Log") + message);
 }

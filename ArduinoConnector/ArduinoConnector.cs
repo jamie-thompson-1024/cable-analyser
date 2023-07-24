@@ -25,8 +25,6 @@ namespace DeviceConnector
 
         private void MessageReceivedHandler(object sender, DeviceMessageReceivedEventArgs e)
         {
-            Debug.Print("Messgae Rx");
-
             string rawMessage = e.Message;
             string[] commandArguments = rawMessage.Split(' ');
 
@@ -47,8 +45,6 @@ namespace DeviceConnector
                     new LogMessageEventArgs(_responseArgs[1])
                 );
             }
-
-            Debug.Print("Messgae Rx");
 
             _autoResetEvent.Set();
         }

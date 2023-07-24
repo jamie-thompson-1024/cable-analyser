@@ -3,6 +3,7 @@ using DeviceConnector;
 using System;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace CableAnalyserUnitTests
 {
@@ -107,9 +108,10 @@ namespace CableAnalyserUnitTests
             IDeviceConnector connector = ConnectorFactory(connection);
             connection.OpenConnection(connection.AvaiablePorts[0], baudRate);
 
-            Assert.AreEqual(
-                "CableAnalyer",
-                connector.GetDeviceType()
+            string deviceType = connector.GetDeviceType();
+
+            Assert.IsTrue(
+                deviceType.Equals("CableAnalyser")
             );
 
             connection.CloseConnection();

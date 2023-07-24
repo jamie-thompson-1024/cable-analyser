@@ -69,13 +69,10 @@ namespace DeviceConnector
             while (!cancellationToken.IsCancellationRequested)
             { 
                 int readBytes = await _serialPort.BaseStream.ReadAsync(buffer, 0, _maxReadBytes, cancellationToken);
-                Debug.Print(readBytes.ToString());
-                Debug.Print(Encoding.ASCII.GetString(message, 0, readBytes));
                 if (readBytes > 1)
                 {
                     Array.Copy(buffer, 0, message, 1, readBytes);
                     string messageString = Encoding.ASCII.GetString(message, 0, readBytes + 1);
-                    Debug.Print(messageString);
                     _messageHistory.Add((MessageDirection.RECEIVE, messageString));
                     RaiseDeviceMessageReceivedEvent(
                         new DeviceMessageReceivedEventArgs(messageString)
@@ -106,7 +103,7 @@ namespace DeviceConnector
             _serialPort.PortName = portName;
             _serialPort.BaudRate = baudRate;
 
-            _serialPort.Parity = Parity.Even;
+            _serialPort.Parity = Parity.None;
             _serialPort.StopBits = StopBits.One;
             _serialPort.DataBits = 8;
 
