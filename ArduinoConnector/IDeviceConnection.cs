@@ -10,8 +10,8 @@ namespace DeviceConnector
 
     public interface IDeviceConnection
     {
-        event EventHandler<ArduinoMessageSentEventArgs> MessageSent;
-        event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
+        event EventHandler<DeviceMessageSentEventArgs> MessageSent;
+        event EventHandler<DeviceMessageReceivedEventArgs> MessageReceived;
 
         (MessageDirection, string)[] MessageHistory { get; }
         string ConnectedPort { get; }

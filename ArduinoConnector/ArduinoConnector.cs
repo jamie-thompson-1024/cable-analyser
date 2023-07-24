@@ -23,7 +23,7 @@ namespace DeviceConnector
             _autoResetEvent = new AutoResetEvent(false);
         }
 
-        private void MessageReceivedHandler(object sender, ArduinoMessageReceivedEventArgs e)
+        private void MessageReceivedHandler(object sender, DeviceMessageReceivedEventArgs e)
         {
             Debug.Print("Messgae Rx");
 

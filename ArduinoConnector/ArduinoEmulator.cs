@@ -13,8 +13,8 @@ namespace DeviceConnector
         public string[] AvaiablePorts => _ports.ToArray();
         public string ConnectedPort => _connectedPort;
 
-        public event EventHandler<ArduinoMessageSentEventArgs> MessageSent;
-        public event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
+        public event EventHandler<DeviceMessageSentEventArgs> MessageSent;
+        public event EventHandler<DeviceMessageReceivedEventArgs> MessageReceived;
 
         private List<(MessageDirection, string)> _messageHistory = new List<(MessageDirection, string)> ();
         private (int, int)[] _pinConnections;
@@ -32,7 +32,7 @@ namespace DeviceConnector
             _ports = ports;
             _testPins = testPins;
 
-            MessageReceived += (object sender, ArduinoMessageReceivedEventArgs e) =>
+            MessageReceived += (object sender, DeviceMessageReceivedEventArgs e) =>
             {
                 _messageHistory.Add((MessageDirection.SEND, e.Message));
             };
@@ -85,7 +85,7 @@ namespace DeviceConnector
 
         private void GetDeviceType(string[] arguments)
         {
-            MessageReceived?.Invoke(this, new ArduinoMessageReceivedEventArgs("DeviceType CableAnalyer"));
+            MessageReceived?.Invoke(this, new DeviceMessageReceivedEventArgs("DeviceType CableAnalyer"));
         }
 
         private void SetPinOutput(string[] arguments)
@@ -97,7 +97,7 @@ namespace DeviceConnector
 
             MessageReceived?.Invoke(
                 this,
-                new ArduinoMessageReceivedEventArgs($"SetPinOutput Successful")
+                new DeviceMessageReceivedEventArgs($"SetPinOutput Successful")
             );
         }
 
@@ -139,14 +139,14 @@ namespace DeviceConnector
 
             MessageReceived?.Invoke(
                 this,
-                new ArduinoMessageReceivedEventArgs($"TestPinConnectionsResults {pin} {string.Join(",", connectedPins.ToArray())}")
+                new DeviceMessageReceivedEventArgs($"TestPinConnectionsResults {pin} {string.Join(",", connectedPins.ToArray())}")
             );
             
         }
 
         private void SendError(string message)
         {
-            MessageReceived?.Invoke(this, new ArduinoMessageReceivedEventArgs($"Error {message}"));
+            MessageReceived?.Invoke(this, new DeviceMessageReceivedEventArgs($"Error {message}"));
         }
     }
 }

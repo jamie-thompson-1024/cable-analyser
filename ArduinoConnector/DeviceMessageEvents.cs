@@ -2,18 +2,18 @@
 
 namespace DeviceConnector
 {
-    public class ArduinoMessageReceivedEventArgs : EventArgs
+    public class DeviceMessageReceivedEventArgs : EventArgs
     {
-        public ArduinoMessageReceivedEventArgs(string message)
+        public DeviceMessageReceivedEventArgs(string message)
         {
             Message = message;
         }
 
         public string Message { get; }
     }
-    public class ArduinoMessageSentEventArgs : EventArgs
+    public class DeviceMessageSentEventArgs : EventArgs
     {
-        public ArduinoMessageSentEventArgs(string message)
+        public DeviceMessageSentEventArgs(string message)
         {
             Message = message;
         }

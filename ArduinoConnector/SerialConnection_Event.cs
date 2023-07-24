@@ -12,8 +12,8 @@ namespace DeviceConnector
         public string[] AvaiablePorts => SerialPort.GetPortNames();
         public string ConnectedPort => throw new NotImplementedException();
 
-        public event EventHandler<ArduinoMessageSentEventArgs> MessageSent;
-        public event EventHandler<ArduinoMessageReceivedEventArgs> MessageReceived;
+        public event EventHandler<DeviceMessageSentEventArgs> MessageSent;
+        public event EventHandler<DeviceMessageReceivedEventArgs> MessageReceived;
 
         SerialPort _serialPort;
         List<(MessageDirection, string)> _messageHistory;
@@ -34,7 +34,7 @@ namespace DeviceConnector
 
             MessageSent?.Invoke(
                 this, 
-                new ArduinoMessageSentEventArgs(message)
+                new DeviceMessageSentEventArgs(message)
             );
         }
         private void ReceivedMessageHandler(object sender, SerialDataReceivedEventArgs e)
@@ -45,7 +45,7 @@ namespace DeviceConnector
 
             MessageReceived?.Invoke(
                 this,
-                new ArduinoMessageReceivedEventArgs(message)
+                new DeviceMessageReceivedEventArgs(message)
             );
         }
         public void OpenConnection(string portName, int baudRate)
