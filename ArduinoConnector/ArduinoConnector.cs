@@ -51,7 +51,6 @@ namespace DeviceConnector
             Debug.Print("Messgae Rx");
 
             _autoResetEvent.Set();
-            _autoResetEvent.Close();
         }
 
         private void SendMessageWait(string message)
