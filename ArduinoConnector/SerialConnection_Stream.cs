@@ -31,7 +31,18 @@ namespace DeviceConnector
 
             _messageHistory = new List<(MessageDirection, string)>();
         }
-
+        private void RaiseDeviceMessageSentEvent(DeviceMessageSentEventArgs e)
+        {
+            MessageSent?.Invoke(
+                this, e
+            );
+        }
+        private void RaiseDeviceMessageReceivedEvent(DeviceMessageReceivedEventArgs e)
+        {
+            MessageReceived?.Invoke(
+                this, e
+            );
+        }
         private void BeginRead()
         {
             _readTaskCancellationTokenSource?.Dispose();
@@ -66,8 +77,7 @@ namespace DeviceConnector
                     string messageString = Encoding.ASCII.GetString(message, 0, readBytes + 1);
                     Debug.Print(messageString);
                     _messageHistory.Add((MessageDirection.RECEIVE, messageString));
-                    MessageReceived?.Invoke(
-                        this,
+                    RaiseDeviceMessageReceivedEvent(
                         new DeviceMessageReceivedEventArgs(messageString)
                     );
                 }
@@ -84,20 +94,8 @@ namespace DeviceConnector
             _serialPort.Write(message);
             _messageHistory.Add((MessageDirection.SEND, message));
 
-            MessageSent?.Invoke(
-                this, 
+            RaiseDeviceMessageSentEvent(
                 new DeviceMessageSentEventArgs(message)
-            );
-        }
-        private void ReceivedMessageHandler(object sender, SerialDataReceivedEventArgs e)
-        {
-            SerialPort port = (SerialPort)sender;
-            string message = port.ReadLine();
-            _messageHistory.Add((MessageDirection.RECEIVE, message));
-
-            MessageReceived?.Invoke(
-                this,
-                new DeviceMessageReceivedEventArgs(message)
             );
         }
         public void OpenConnection(string portName, int baudRate)
