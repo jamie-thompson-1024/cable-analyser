@@ -54,19 +54,27 @@ namespace DeviceConnector
         private async void ReadLoop(CancellationToken cancellationToken)
         {
             byte[] buffer = new byte[_maxReadBytes];
+            byte[] message = new byte[_maxReadBytes];
             while (!cancellationToken.IsCancellationRequested)
             { 
                 int readBytes = await _serialPort.BaseStream.ReadAsync(buffer, 0, _maxReadBytes, cancellationToken);
-                string message = Encoding.ASCII.GetString(buffer, 0, readBytes);
                 Debug.Print(readBytes.ToString());
-                Debug.Print(message);
-                if (readBytes > 0)
+                Debug.Print(Encoding.ASCII.GetString(message, 0, readBytes));
+                if (readBytes > 1)
                 {
-                    _messageHistory.Add((MessageDirection.RECEIVE, message));
+                    Array.Copy(buffer, 0, message, 1, readBytes);
+                    string messageString = Encoding.ASCII.GetString(message, 0, readBytes + 1);
+                    Debug.Print(messageString);
+                    _messageHistory.Add((MessageDirection.RECEIVE, messageString));
                     MessageReceived?.Invoke(
                         this,
-                        new ArduinoMessageReceivedEventArgs(message)
+                        new ArduinoMessageReceivedEventArgs(messageString)
                     );
+                }
+
+                if (readBytes == 1)
+                {
+                    Array.Copy(buffer, 0, message, 0, readBytes);
                 }
             }
         }
