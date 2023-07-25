@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DeviceConnector
 {
-    public class SerialConnection_Stream : IDeviceConnection
+    public class SerialConnection : IDeviceConnection
     {
         public (MessageDirection, string)[] MessageHistory => _messageHistory.ToArray();
         public string[] AvaiablePorts => SerialPort.GetPortNames();
@@ -24,7 +24,7 @@ namespace DeviceConnector
         CancellationTokenSource _readTaskCancellationTokenSource;
         int _maxReadBytes = 1024;
 
-        public SerialConnection_Stream()
+        public SerialConnection()
         {
             _serialPort = new SerialPort();
             _serialPort.Dispose();

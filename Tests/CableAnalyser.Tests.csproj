@@ -61,7 +61,7 @@
       <Project>{922dd197-7588-4dfe-8964-6dd326aff5b4}</Project>
       <Name>CableAnalyser.Connector</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CableAnalyserGUI\CableAnalyser.GUI.csproj">
+    <ProjectReference Include="..\GUI\CableAnalyser.GUI.csproj">
       <Project>{43515a27-d66b-415d-8dbf-ac328389b561}</Project>
       <Name>CableAnalyser.GUI</Name>
     </ProjectReference>

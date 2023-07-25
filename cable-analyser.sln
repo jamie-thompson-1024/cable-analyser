@@ -3,18 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser.Connector", "ArduinoConnector\CableAnalyser.Connector.csproj", "{922DD197-7588-4DFE-8964-6DD326AFF5B4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser.Analyser", "CableAnalyser\CableAnalyser.Analyser.csproj", "{E00A9661-121E-47A2-A7FB-C1B3527D4096}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.GUI", "CableAnalyserGUI\CableAnalyser.GUI.csproj", "{43515A27-D66B-415D-8DBF-AC328389B561}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.Tests", "CableAnalyserUnitTests\CableAnalyser.Tests.csproj", "{2BE83ACF-7333-4314-9121-51409223D92E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C119CE1-76DB-406D-9DEB-E5380B18EF61}"
 	ProjectSection(SolutionItems) = preProject
 		TODO = TODO
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser.Connector", "Connector\CableAnalyser.Connector.csproj", "{7F91A391-9688-4C64-80D8-EB294A28DEF9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser.Analyser", "Analyser\CableAnalyser.Analyser.csproj", "{9D92DCD6-8E92-43B4-B4D0-DCC21074C2A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.GUI", "GUI\CableAnalyser.GUI.csproj", "{43515A27-D66B-415D-8DBF-AC328389B561}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.Tests", "Tests\CableAnalyser.Tests.csproj", "{2BE83ACF-7333-4314-9121-51409223D92E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,14 +22,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{922DD197-7588-4DFE-8964-6DD326AFF5B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{922DD197-7588-4DFE-8964-6DD326AFF5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{922DD197-7588-4DFE-8964-6DD326AFF5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{922DD197-7588-4DFE-8964-6DD326AFF5B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E00A9661-121E-47A2-A7FB-C1B3527D4096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E00A9661-121E-47A2-A7FB-C1B3527D4096}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E00A9661-121E-47A2-A7FB-C1B3527D4096}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E00A9661-121E-47A2-A7FB-C1B3527D4096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F91A391-9688-4C64-80D8-EB294A28DEF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F91A391-9688-4C64-80D8-EB294A28DEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F91A391-9688-4C64-80D8-EB294A28DEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F91A391-9688-4C64-80D8-EB294A28DEF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D92DCD6-8E92-43B4-B4D0-DCC21074C2A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D92DCD6-8E92-43B4-B4D0-DCC21074C2A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D92DCD6-8E92-43B4-B4D0-DCC21074C2A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D92DCD6-8E92-43B4-B4D0-DCC21074C2A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43515A27-D66B-415D-8DBF-AC328389B561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43515A27-D66B-415D-8DBF-AC328389B561}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43515A27-D66B-415D-8DBF-AC328389B561}.Release|Any CPU.ActiveCfg = Release|Any CPU
