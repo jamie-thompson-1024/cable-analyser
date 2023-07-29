@@ -2,8 +2,6 @@
 using DeviceConnector;
 using System;
 using System.Linq;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace CableAnalyserUnitTests
 {
@@ -46,7 +44,7 @@ namespace CableAnalyserUnitTests
             IDeviceConnection connection;
             if (useArduino)
             {
-                connection = new SerialConnection_Stream();
+                connection = new SerialConnection();
             }
             else
             {
@@ -64,7 +62,7 @@ namespace CableAnalyserUnitTests
         }
         private IDeviceConnector ConnectorFactory(IDeviceConnection connection)
         {
-            return new DeviceConnector.ArduinoConnector(connection);
+            return new ArduinoConnector(connection);
         }
 
         [TestMethod]

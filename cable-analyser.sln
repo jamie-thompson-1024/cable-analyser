@@ -8,13 +8,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TODO = TODO
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser.Connector", "Connector\CableAnalyser.Connector.csproj", "{7F91A391-9688-4C64-80D8-EB294A28DEF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyserConnector", "Connector\CableAnalyserConnector.csproj", "{7F91A391-9688-4C64-80D8-EB294A28DEF9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser.Analyser", "Analyser\CableAnalyser.Analyser.csproj", "{9D92DCD6-8E92-43B4-B4D0-DCC21074C2A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableAnalyser", "Analyser\CableAnalyser.csproj", "{9D92DCD6-8E92-43B4-B4D0-DCC21074C2A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.GUI", "GUI\CableAnalyser.GUI.csproj", "{43515A27-D66B-415D-8DBF-AC328389B561}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyserGUI", "GUI\CableAnalyserGUI.csproj", "{43515A27-D66B-415D-8DBF-AC328389B561}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyser.Tests", "Tests\CableAnalyser.Tests.csproj", "{2BE83ACF-7333-4314-9121-51409223D92E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableAnalyserTests", "Tests\CableAnalyserTests.csproj", "{2BE83ACF-7333-4314-9121-51409223D92E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
