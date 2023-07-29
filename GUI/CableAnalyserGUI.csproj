@@ -76,5 +76,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Analyser\CableAnalyser.csproj">
+      <Project>{9d92dcd6-8e92-43b4-b4d0-dcc21074c2a1}</Project>
+      <Name>CableAnalyser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connector\CableAnalyserConnector.csproj">
+      <Project>{7f91a391-9688-4c64-80d8-eb294a28def9}</Project>
+      <Name>CableAnalyserConnector</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
