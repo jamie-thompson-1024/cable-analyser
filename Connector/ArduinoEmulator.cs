@@ -85,7 +85,7 @@ namespace DeviceConnector
 
         private void GetDeviceType(string[] arguments)
         {
-            MessageReceived?.Invoke(this, new DeviceMessageReceivedEventArgs("DeviceType CableAnalyer"));
+            MessageReceived?.Invoke(this, new DeviceMessageReceivedEventArgs("DeviceType CableAnalyser"));
         }
 
         private void SetPinOutput(string[] arguments)
