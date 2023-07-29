@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace CableAnalyserGUI
 {
-    public partial class Form1 : Form
+    public partial class ConfigurationWindow : Form
     {
-        public Form1()
+        public ConfigurationWindow()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfigurationWindow_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
