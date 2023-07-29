@@ -2,6 +2,7 @@
 using DeviceConnector;
 using System;
 using System.Linq;
+using System.Diagnostics;
 
 namespace CableAnalyserUnitTests
 {
@@ -37,7 +38,7 @@ namespace CableAnalyserUnitTests
 
         static int baudRate = 57600;
 
-        static bool useArduino = true;
+        static bool useArduino = false;
 
         private IDeviceConnection ConnectionFactory()
         {
@@ -111,6 +112,28 @@ namespace CableAnalyserUnitTests
             Assert.IsTrue(
                 deviceType.Equals("CableAnalyser")
             );
+
+            connection.CloseConnection();
+        }
+
+        [TestMethod]
+        public void Request_MultipleCommands()
+        {
+            IDeviceConnection connection = ConnectionFactory();
+            IDeviceConnector connector = ConnectorFactory(connection);
+            connection.OpenConnection(connection.AvaiablePorts[0], baudRate);
+
+            try
+            {
+                connector.GetDeviceType().Equals("CableAnalyser");
+                connector.SetPinOutput(ioPins[0], false);
+                connector.GetDeviceType().Equals("CableAnalyser");
+                connector.SetPinOutput(ioPins[0], true);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
 
             connection.CloseConnection();
         }
