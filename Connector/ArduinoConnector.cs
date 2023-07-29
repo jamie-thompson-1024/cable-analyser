@@ -23,6 +23,20 @@ namespace DeviceConnector
             _autoResetEvent = new AutoResetEvent(false);
         }
 
+        private void RaiseErrorMessageEvent(ErrorMessageEventArgs e)
+        {
+            ErrorMessage?.Invoke(
+                this, e
+            );
+        }
+
+        private void RaiseLogMessageEvent(LogMessageEventArgs e)
+        {
+            LogMessage?.Invoke(
+                this, e
+            );
+        }
+
         private void MessageReceivedHandler(object sender, DeviceMessageReceivedEventArgs e)
         {
             string rawMessage = e.Message;
@@ -32,16 +46,14 @@ namespace DeviceConnector
 
             if (_responseArgs[0].Equals("Error"))
             {
-                ErrorMessage?.Invoke(
-                    this,
+                RaiseErrorMessageEvent(
                     new ErrorMessageEventArgs(_responseArgs[1])
                 );
             }
 
             if (_responseArgs[0].Equals("Log"))
             {
-                LogMessage?.Invoke(
-                    this,
+                RaiseLogMessageEvent(
                     new LogMessageEventArgs(_responseArgs[1])
                 );
             }
