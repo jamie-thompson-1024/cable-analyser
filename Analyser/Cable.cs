@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CableAnalyser
 {
-    internal class Cable
+    public class Cable
     {
-        // Add Cable Comparison Opperators
+        public Cable() { 
+        
+        }
     }
 }

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CableAnalyser
 {
-    internal class Connection
+    public class Connection
     {
-        // Add Comparison Operators
-        // Build In Pin to Port Conversion
+
     }
 }
