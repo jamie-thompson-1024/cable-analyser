@@ -11,14 +11,22 @@ using System.Xml.Serialization;
 
 namespace CableAnalyser
 {
-    public class PortConfiguration : IXmlSerializable
+    public struct PortConfiguration
+    {
+        PortType _portType;
+        int _portNumber;
+        int[] _pinConfig;
+    }
+
+    public class TesterConfiguration
     {
         List<Port> _ports;
         Dictionary<int, Port> _pinRelations;
 
-        public PortConfiguration(IEnumerable<Port> ports) {
+        public TesterConfiguration(IEnumerable<Port> ports)
+        {
             _ports = new List<Port>();
-            _pinRelations = new Dictionary<int,Port>();
+            _pinRelations = new Dictionary<int, Port>();
 
             // Create new instance of ports from given list
             // Index port instances by pins
@@ -36,21 +44,6 @@ namespace CableAnalyser
         public Port GetPortFromRawPin(int rawPin)
         {
             return _pinRelations[rawPin];
-        }
-
-        public XmlSchema GetSchema()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            throw new NotImplementedException();
         }
     }
 }

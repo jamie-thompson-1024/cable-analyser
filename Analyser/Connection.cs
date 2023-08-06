@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CableAnalyser
 {
-    public class Connection
+    public struct Connection
     {
-
+        public Pin PinA;
+        public Pin PinB;
     }
 }

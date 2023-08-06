@@ -9,22 +9,25 @@ namespace CableAnalyser
     public class Pin
     {
         PortType _port;
+        int _portNumber;
         int _pin;
 
-        public Pin(PortType port, int pin) {
+        public Pin(PortType port, int portNumber, int pin) {
             _port = port;
             _pin = pin;
+            _portNumber = portNumber;
         }
-        public Pin(PortConfiguration portConfig, int pin) { 
+        public Pin(TesterConfiguration portConfig, int pin) { 
         
         }
 
-        public int GetRawPinNumber(PortConfiguration portConfig)
+        public int GetRawPinNumber(TesterConfiguration portConfig)
         {
             return _pin;
         }
 
         public int PinNumber { get => _pin; }
+        public int PortNumber { get => _portNumber; }
         public PortType PortType { get => _port; }
 
     }
