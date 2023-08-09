@@ -4,4 +4,8 @@
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Connector\CableAnalyserConnector.csproj" />
+  </ItemGroup>
+
 </Project>
