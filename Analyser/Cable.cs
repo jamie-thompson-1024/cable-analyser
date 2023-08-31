@@ -15,7 +15,7 @@ namespace CableAnalyser
         
         }
 
-        public static Cable GenerateFromScan(IDeviceConnector connector)
+        public static Cable GenerateFromScan(TesterConfiguration testerConfig, IDeviceConnector connector)
         {
 
         }
@@ -38,6 +38,7 @@ namespace CableAnalyser
                     ports.Add(portB);
                 }
             }
+            return ports.ToArray();
         }
     }
 }

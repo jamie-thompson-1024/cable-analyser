@@ -13,37 +13,63 @@ namespace CableAnalyser
 {
     public struct PortConfiguration
     {
-        PortType _portType;
-        int _portNumber;
-        int[] _pinConfig;
+        public Port port;
+        public int[] pinConfig;
+    }
+    public struct PortPin
+    {
+        public Port port;
+        public int pinNumber;
     }
 
     public class TesterConfiguration
     {
-        List<Port> _ports;
-        Dictionary<int, Port> _pinRelations;
+        List<PortConfiguration> _ports;
+        Dictionary<int, PortConfiguration> _pinRelations;
 
-        public TesterConfiguration(IEnumerable<Port> ports)
+        public TesterConfiguration(IEnumerable<PortConfiguration> ports)
         {
-            _ports = new List<Port>();
-            _pinRelations = new Dictionary<int, Port>();
+            _ports = new List<PortConfiguration>();
+            _pinRelations = new Dictionary<int, PortConfiguration>();
 
             // Create new instance of ports from given list
             // Index port instances by pins
-            foreach (Port port in ports)
+            foreach (PortConfiguration port in ports)
             {
-                Port newPort = port.Clone();
-                _ports.Add(newPort);
-                foreach (int pin in newPort.PinConfig)
+                _ports.Add(port);
+                foreach (int pin in port.pinConfig)
                 {
-                    _pinRelations.Add(pin, newPort);
+                    _pinRelations.Add(pin, port);
                 }
             }
         }
 
-        public Port GetPortFromRawPin(int rawPin)
+        public PortPin GetPortPinFromRawPin(int rawPin)
         {
-            return _pinRelations[rawPin];
+            PortConfiguration portConfig = _pinRelations[rawPin];
+            int[] pinNumbers = portConfig.pinConfig;
+            for (int i = 0; i < pinNumbers.Length; i++)
+            {
+                if (pinNumbers[i] == rawPin)
+                {
+                    PortPin pin = new PortPin();
+                    pin.port = portConfig.port;
+                    pin.pinNumber = i;
+                    return pin;
+                }
+            }
+            throw new Exception($"rawPin {rawPin} is invalid");
+        }
+
+        public int GetRawPinFromPortPin(PortPin portPin)
+        {
+            foreach(PortConfiguration portConfig in _ports)
+            {
+                if(portConfig.port == portPin.port) {
+                    return portConfig.pinConfig[portPin.pinNumber];
+                }
+            }
+            throw new Exception($"portPin {PortTypeMethods.ToString(portPin.port.portType)} {portPin.port.portNumber}: {portPin.pinNumber} is invalid");
         }
     }
 }

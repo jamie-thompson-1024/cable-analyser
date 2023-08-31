@@ -8,17 +8,17 @@ namespace CableAnalyser
 {
     public class Pin
     {
-        PortType _port;
-        int _portNumber;
-        int _pin;
+        PortPin _portPin;
 
-        public Pin(PortType port, int portNumber, int pin) {
-            _port = port;
-            _pin = pin;
-            _portNumber = portNumber;
+        public Pin(PortType portType, int portNumber, int pin) {
+            _portPin = new PortPin();
+            _portPin.port = new Port();
+            _portPin.port.portType = portType;
+            _portPin.port.portNumber = portNumber;
+            _portPin.pinNumber = pin;
         }
-        public Pin(TesterConfiguration portConfig, int pin) { 
-        
+        public Pin(TesterConfiguration testerConfig, int pin) {
+            _portPin = testerConfig.GetPortPinFromRawPin(pin);
         }
 
         public int GetRawPinNumber(TesterConfiguration portConfig)

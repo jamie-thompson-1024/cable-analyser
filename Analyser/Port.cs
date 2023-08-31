@@ -8,7 +8,16 @@ namespace CableAnalyser
 {
     public struct Port
     {
-        PortType _port;
-        int _portNumber;
+        public PortType portType;
+        public int portNumber;
+
+        public static bool operator ==(Port left, Port right)
+        {
+            return (left.portType == right.portType && left.portNumber == right.portNumber);
+        }
+        public static bool operator !=(Port left, Port right)
+        {
+            return (left.portType != right.portType || left.portNumber != right.portNumber);
+        }
     }
 }
